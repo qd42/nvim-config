@@ -29,6 +29,16 @@ require('nord').set()
 --nord14_gui = "#A3BE8C", -- nord14 in palette
 --nord15_gui = "#B48EAD", -- nord15 in palette
 --none = "NONE",
-
+-- replace active background and update non-active to standare Nord background color
 vim.api.nvim_command("highlight NormalNC guibg=#2E3440")
 vim.api.nvim_command("highlight Normal guibg=black")
+
+-- override the background for termanal/packer/etc
+vim.cmd([[augroup nord]])
+vim.cmd([[  autocmd!]])
+vim.cmd([[  autocmd ColorScheme * lua require("nord.util").onColorScheme()]])
+vim.cmd([[  autocmd TermOpen * setlocal winhighlight=Normal:black,NormalNC:NormalNC,SignColumn:NormalFloat]])
+vim.cmd([[  autocmd FileType packer setlocal winhighlight=Normal:black,NormalNC:NormalNC,SignColumn:NormalFloat]])
+vim.cmd([[  autocmd FileType qf setlocal winhighlight=Normal:black,NormalNC:NormalNC,SignColumn:NormalFloat]])
+vim.cmd([[augroup end]])
+

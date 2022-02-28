@@ -32,13 +32,20 @@ require('packer').startup(function(use)
     use 'nvim-telescope/telescope-dap.nvim'
     use 'mfussenegger/nvim-dap-python'
     use 'rcarriga/nvim-dap-ui'
-
+    use 'jbyuki/one-small-step-for-vimkind'
+    use 'Pocco81/DAPInstall.nvim'
     use 'shaunsingh/nord.nvim'
 
     use 'feline-nvim/feline.nvim'
     --    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     -- on windows: 'powershell ./install.ps1'
     -- use 'ellisonleao/gruvbox.nvim'
+
+    use'kyazdani42/nvim-web-devicons'
+    use {
+      'yamatsum/nvim-nonicons',
+      requires = {'kyazdani42/nvim-web-devicons'}
+    }
 end)
 
 vim.o.termguicolors = true
@@ -50,3 +57,4 @@ require('config.lsp')
 require('config.dap')
 require('config.cmp')
 require('config.colorscheme')
+require('config.devicons')
