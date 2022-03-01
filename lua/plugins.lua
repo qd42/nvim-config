@@ -46,6 +46,7 @@ require('packer').startup(function(use)
       'yamatsum/nvim-nonicons',
       requires = {'kyazdani42/nvim-web-devicons'}
     }
+    use 'dstein64/vim-win'
 end)
 
 vim.o.termguicolors = true
