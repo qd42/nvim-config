@@ -1,6 +1,7 @@
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use'kyazdani42/nvim-web-devicons'
 
   -- Simple plugins can be specified as strings
   use 'neovim/nvim-lspconfig'
@@ -20,6 +21,8 @@ require('packer').startup(function(use)
     use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'SirVer/ultisnips'
     use 'mfussenegger/nvim-dap'
+    use 'glepnir/lspsaga.nvim'
+    use 'onsails/lspkind-nvim'
 
     use 'mhinz/vim-startify'
 
@@ -41,17 +44,30 @@ require('packer').startup(function(use)
     -- on windows: 'powershell ./install.ps1'
     -- use 'ellisonleao/gruvbox.nvim'
 
-    use'kyazdani42/nvim-web-devicons'
     use {
       'yamatsum/nvim-nonicons',
       requires = {'kyazdani42/nvim-web-devicons'}
     }
     use 'dstein64/vim-win'
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+          'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        config = function() require'nvim-tree'.setup {} end
+    }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+     }
 end)
 
 vim.o.termguicolors = true
 
 require('feline').setup()
+require('Comment').setup()
 
 require('config.telescope')
 require('config.lsp')
