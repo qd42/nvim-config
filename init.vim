@@ -33,8 +33,17 @@ tnoremap <Esc><Space> <C-\><C-N>
 
 " call submode#enter_with('window','n','','<leader>w','')
 call submode#map('window','n','','h','<C-w>h')
-nnoremap <leader>sv :source $MYVIMRC<cr> 
-nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr> 
+nnoremap <leader>ve :edit $MYVIMRC<cr>
+
+nnoremap <M-h> h
+nnoremap <M-j> j
+nnoremap <M-k> k
+nnoremap <M-l> l
+
+nnoremap <leader>t :Telescope<cr>
+nnoremap <M-t> :NvimTreeToggle<cr>
+
 lua require('plugins')
 " lua require('telescope')
 " lua require('cmp')

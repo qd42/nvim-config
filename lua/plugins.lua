@@ -39,6 +39,7 @@ require('packer').startup(function(use)
     use 'Pocco81/DAPInstall.nvim'
     use 'shaunsingh/nord.nvim'
 
+    use 'cpea2506/one_monokai.nvim'
     use 'feline-nvim/feline.nvim'
     --    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     -- on windows: 'powershell ./install.ps1'
