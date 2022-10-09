@@ -7,6 +7,14 @@ dap.adapters.cppdbg = {
                     detached = false
                       }
                   }
+dap.adapters.cppdbgwin = {
+      id = 'cppdbg',
+        type = 'executable',
+          command = vim.fn.stdpath('data') ..'\\dap\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+            options = {
+                    detached = false
+                      }
+                  }
 dap.configurations.cpp = {
   {
     name = "Launch file",
@@ -14,6 +22,16 @@ dap.configurations.cpp = {
     request = "launch",
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = true,
+  },
+  {
+    name = "Launch file (gcc Win)",
+    type = "cppdbgwin",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
