@@ -2,7 +2,7 @@ local dap = require('dap')
 dap.adapters.cppdbg = {
       id = 'cppdbg',
         type = 'executable',
-          command = vim.fn.stdpath('data') ..'/dap/extension/debugAdapters/bin/OpenDebugAD7.exe',
+          command = vim.fn.stdpath('data') ..'/dap/extension/debugAdapters/bin/OpenDebugAD7',
             options = {
                     detached = false
                       }
