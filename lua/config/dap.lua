@@ -1,10 +1,12 @@
 local dap = require('dap')
 dap.adapters.cppdbg = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = vim.fn.stdpath('data') .. '/dap/extension/debugAdapters/bin/OpenDebugAD7',
-}
-
+      id = 'cppdbg',
+        type = 'executable',
+          command = vim.fn.stdpath('data') ..'/dap/extension/debugAdapters/bin/OpenDebugAD7.exe',
+            options = {
+                    detached = false
+                      }
+                  }
 dap.configurations.cpp = {
   {
     name = "Launch file",
@@ -124,4 +126,8 @@ require("dapui").setup({
 })
 
 vim.api.nvim_set_keymap('n', '<leader>du', '<cmd>lua require"dapui".toggle()<CR>',{})
-
+vim.fn.sign_define('DapBreakpoint', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPoint', numhl= 'DapLogPoint' })
+vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStopped', numhl= 'DapStopped' })

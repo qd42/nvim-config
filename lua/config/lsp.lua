@@ -20,8 +20,8 @@ local on_attach  = function(client, bufnr)
     buf_set_keymap('n', "<leader>la", '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', "<leader>lR", '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', "<leader>ls", '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', "<leader>lp", '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', "<leader>ln", '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', "<leader>lj", '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', "<leader>lk", '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', "<leader>lS", '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', "<leader>lf", '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
@@ -124,5 +124,7 @@ cmp.setup {
     })
   }
 }
+-- Error = "", Warning = "", Hint = "", Information = ""
 
-
+local lspsaga = require('lspsaga')
+lspsaga.init_lsp_saga()
