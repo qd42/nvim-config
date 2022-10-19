@@ -11,8 +11,6 @@ local cmp = require'cmp'
       end,
     },
     mapping = {
-      ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item()),
-      ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item()),
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -37,7 +35,8 @@ local cmp = require'cmp'
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline({'/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
@@ -45,6 +44,7 @@ local cmp = require'cmp'
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {

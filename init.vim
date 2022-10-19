@@ -44,6 +44,7 @@ nnoremap <M-l> l
 nnoremap <leader>t :Telescope<cr>
 nnoremap <M-t> :NvimTreeToggle<cr>
 nnoremap <M-b> :bn<cr>
+nnoremap <M-c> :bdelete<cr>
 
 lua require('plugins')
 " lua require('telescope')
