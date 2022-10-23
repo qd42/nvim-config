@@ -24,6 +24,7 @@ local on_attach  = function(client, bufnr)
     buf_set_keymap('n', "<leader>lk", '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', "<leader>lS", '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', "<leader>lf", '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('n', "<leader>lc", '<cmd>ClangdSwitchSourceHeader<CR>', opts)
 
     -- Disable Autoformat
     client.resolved_capabilities.document_formatting = false

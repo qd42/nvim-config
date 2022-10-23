@@ -68,7 +68,8 @@ vim.api.nvim_set_keymap('n', '<leader>dC', "<cmd>lua local widgets=require'dap.u
 vim.api.nvim_set_keymap('n', '<leader>dB', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',{})
 vim.api.nvim_set_keymap('n', '<leader>dm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',{})
 vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua require"dap".repl.open()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dl', '<cmd>lua require"dap".repl.run_last()<CR>',{})
+vim.api.nvim_set_keymap('n', '<leader>dl', '<cmd>lua require"dap".run_last()<CR>',{})
+vim.api.nvim_set_keymap('n', '<leader>dt', '<cmd>lua require"dap".terminate()<CR>',{})
 
 require("dapui").setup({
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
