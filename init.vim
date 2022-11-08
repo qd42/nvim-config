@@ -35,20 +35,37 @@ tnoremap <Esc><Space> <C-\><C-N>
 call submode#map('window','n','','h','<C-w>h')
 nnoremap <leader>vs :source $MYVIMRC<cr> 
 nnoremap <leader>ve :edit $MYVIMRC<cr>
+nnoremap <leader>vt :terminal<cr>
 
 nnoremap <M-h> h
 nnoremap <M-j> j
 nnoremap <M-k> k
 nnoremap <M-l> l
+nnoremap <M-u> :tabprev<cr>
+nnoremap <M-i> :tabnext<cr>
 
-nnoremap <leader>t :Telescope<cr>
+nnoremap <leader>tt :Telescope<cr>
+nnoremap <leader>ts :Telescope grep_string<cr>
+nnoremap <leader>tg :Telescope live_grep<cr>
+nnoremap <leader>tf :Telescope find_files<cr>
+nnoremap <leader>tb :Telescope buffers<cr>
+nnoremap <leader>to :Telescope oldfiles<cr>
+nnoremap <leader>tc :Telescope command_history<cr>
+nnoremap <leader>tS :Telescope search_history<cr>
+nnoremap <leader>tq :Telescope quickfix<cr>
+nnoremap <leader>tr :Telescope registers<cr>
+nnoremap <leader>tR :Telescope lsp_references<cr>
+nnoremap <leader>tI :Telescope lsp_incoming_calls<cr>
+nnoremap <leader>tO :Telescope lsp_outgoing_calls<cr>
+nnoremap <leader>tD :Telescope diagnostics<cr>
+nnoremap <leader>tT :Telescope lsp_type_definitions<cr>
+
+nnoremap <leader>cc :make<cr>
+nnoremap <leader>cj :cnext<cr>
+nnoremap <leader>ck :cprev<cr>
+
 nnoremap <M-t> :NvimTreeToggle<cr>
 nnoremap <M-b> :bn<cr>
 nnoremap <M-c> :bdelete<cr>
 
 lua require('plugins')
-" lua require('telescope')
-" lua require('cmp')
-" lua require('lsp')
-" lua require('dap')
-" lua require('colorscheme')
