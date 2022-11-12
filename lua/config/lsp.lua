@@ -109,7 +109,7 @@ require('lspkind').init({
 })
 
 local lspkind = require('lspkind')
-local cmp = require'cmp'
+local cmp = require('cmp')
 cmp.setup {
   formatting = {
     format = lspkind.cmp_format({
