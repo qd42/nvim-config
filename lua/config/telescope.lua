@@ -29,12 +29,3 @@ require('telescope').setup{
   }
 }
 
---[[ telescope-dap
-vim.api.nvim_set_key.map('n', '<leader>dcc', '<cmd>lua require"telescope".extensions.dap.commands{}<CR>',{})
-vim.api.nvim_set_key.map('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>',{})
-vim.api.nvim_set_key.map('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>',{})
-vim.api.nvim_set_key.map('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>',{})
-vim.api.nvim_set_key.map('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>',{})
-]]
-
-

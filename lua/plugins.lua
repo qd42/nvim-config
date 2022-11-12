@@ -63,7 +63,13 @@ require('packer').startup(function(use)
             require('Comment').setup()
         end
      }
-end)
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('gitsigns').setup()
+      end
+    }
+ end)
 
 vim.o.termguicolors = true
 
@@ -76,6 +82,7 @@ require('config.dap')
 require('config.cmp')
 require('config.colorscheme')
 require('config.devicons')
+require('config.gitsigns')
 
 vim.fn.sign_define('DiagnosticSignError', { text=' ', texthl='DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text=' ', texthl='DiagnosticSignWarn' })
