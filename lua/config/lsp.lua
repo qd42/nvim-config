@@ -26,9 +26,9 @@ local on_attach  = function(client, bufnr)
     buf_set_keymap('n', "<leader>lf", '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     buf_set_keymap('n', "<leader>lc", '<cmd>ClangdSwitchSourceHeader<CR>', opts)
 
-    -- Disable Autoformat
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    -- Disable Autoformat I think that's been decommitioned
+    -- client.resolved_capabilities.document_formatting = false
+    -- client.resolved_capabilities.document_range_formatting = false
     end
 
 require'nvim-treesitter.configs'.setup {
@@ -129,3 +129,4 @@ cmp.setup {
 
 local lspsaga = require('lspsaga')
 lspsaga.init_lsp_saga()
+-- 

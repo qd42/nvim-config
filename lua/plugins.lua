@@ -18,8 +18,10 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
-    use 'quangnguyen30192/cmp-nvim-ultisnips'
-    use 'SirVer/ultisnips'
+    -- use 'quangnguyen30192/cmp-nvim-ultisnips'
+    use 'f3fora/cmp-spell'
+    -- use 'SirVer/ultisnips'
+    use {'L3MON4D3/LuaSnip', tag = "v1.1.*"}
     use 'mfussenegger/nvim-dap'
     use 'glepnir/lspsaga.nvim'
     use 'onsails/lspkind-nvim'
