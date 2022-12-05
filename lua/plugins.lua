@@ -11,7 +11,7 @@ require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
   }
--- nvim-cmp completion sources
+  -- nvim-cmp completion sources
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-path'
@@ -71,12 +71,20 @@ require('packer').startup(function(use)
         require('gitsigns').setup()
       end
     }
- end)
+    use 'ggandor/leap.nvim'
+    use {
+        "akinsho/toggleterm.nvim", tag = '*',
+        config = function()
+            require("toggleterm").setup()
+    end
+    }
+end)
 
 vim.o.termguicolors = true
 
 require('feline').setup()
 require('Comment').setup()
+require('leap').add_default_mappings()
 
 require('config.telescope')
 require('config.lsp')
@@ -90,4 +98,3 @@ vim.fn.sign_define('DiagnosticSignError', { text=' ', texthl='DiagnosticSignE
 vim.fn.sign_define('DiagnosticSignWarn', { text=' ', texthl='DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignHint', { text=' ', texthl='DiagnosticSignHint' })
 vim.fn.sign_define('DiagnosticSignInfo', { text=' ', texthl='DiagnosticSignInfo' })
-

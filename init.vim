@@ -33,9 +33,10 @@ tnoremap <Esc><Space> <C-\><C-N>
 
 " call submode#enter_with('window','n','','<leader>w','')
 call submode#map('window','n','','h','<C-w>h')
+" 'various' mappings
 nnoremap <leader>vs :source $MYVIMRC<cr> 
 nnoremap <leader>ve :edit $MYVIMRC<cr>
-nnoremap <leader>vt :terminal<cr>
+nnoremap <leader>vt :ToggleTerm<cr>
 
 nnoremap <M-h> h
 nnoremap <M-j> j
