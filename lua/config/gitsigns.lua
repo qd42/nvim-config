@@ -40,13 +40,4 @@ require('gitsigns').setup {
     enable = false
   },
 }
-vim.api.nvim_set_keymap('n', '<leader>gj', '<cmd>lua require"gitsigns".next_hunk()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gk', '<cmd>lua require"gitsigns".prev_hunk()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gd', '<cmd>lua require"gitsigns".diffthis()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gs', '<cmd>lua require"gitsigns".show()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gb', '<cmd>lua require"gitsigns".blame_line()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gr', '<cmd>lua require"gitsigns".reset_hunk()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gh', '<cmd>lua require"gitsigns".preview_hunk()<CR>',{}) -- I am thinking 'hoover' hence 'h' not 'p' like lsp
-vim.api.nvim_set_keymap('n', '<leader>gD', '<cmd>lua require"gitsigns".toggle_deleted()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>gS', '<cmd>lua require"gitsigns".toggle_signs()<CR>',{})
 

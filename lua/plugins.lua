@@ -6,7 +6,6 @@ require('packer').startup(function(use)
   -- Simple plugins can be specified as strings
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
-  use 'kana/vim-submode'
   use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -18,9 +17,7 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp'
-    -- use 'quangnguyen30192/cmp-nvim-ultisnips'
     use 'f3fora/cmp-spell'
-    -- use 'SirVer/ultisnips'
     use {'L3MON4D3/LuaSnip', tag = "v1.1.*"}
     use 'mfussenegger/nvim-dap'
     use 'glepnir/lspsaga.nvim'
@@ -43,9 +40,6 @@ require('packer').startup(function(use)
 
     use 'cpea2506/one_monokai.nvim'
     use 'feline-nvim/feline.nvim'
-    --    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
-    -- on windows: 'powershell ./install.ps1'
-    -- use 'ellisonleao/gruvbox.nvim'
 
     use {
       'yamatsum/nvim-nonicons',
@@ -80,8 +74,6 @@ require('packer').startup(function(use)
     }
 end)
 
-vim.o.termguicolors = true
-
 require('feline').setup()
 require('Comment').setup()
 require('leap').add_default_mappings()
@@ -98,3 +90,4 @@ vim.fn.sign_define('DiagnosticSignError', { text=' ', texthl='DiagnosticSignE
 vim.fn.sign_define('DiagnosticSignWarn', { text=' ', texthl='DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignHint', { text=' ', texthl='DiagnosticSignHint' })
 vim.fn.sign_define('DiagnosticSignInfo', { text=' ', texthl='DiagnosticSignInfo' })
+

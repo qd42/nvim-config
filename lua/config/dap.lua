@@ -55,22 +55,6 @@ dap.configurations.rust = dap.configurations.cpp
 require('telescope').load_extension('dap')
 -- require('dbg.python')
 
-vim.api.nvim_set_keymap('n', '<leader>dc', '<cmd>lua require"dap".continue()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>ds', '<cmd>lua require"dap".step_over()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>di', '<cmd>lua require"dap".step_into()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua require"dap".step_out()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dv', '<cmd>lua require"dap.ui.variables".scopes()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dh', '<cmd>lua require"dap.ui.variables".hover()<CR>',{})
-vim.api.nvim_set_keymap('v', '<leader>dV', '<cmd>lua require"dap.ui.variables".visual_hover()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dW', '<cmd>lua require"dap.ui.widgets".hover()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dC', "<cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>",{})
-vim.api.nvim_set_keymap('n', '<leader>dB', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dm', '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua require"dap".repl.open()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dl', '<cmd>lua require"dap".run_last()<CR>',{})
-vim.api.nvim_set_keymap('n', '<leader>dt', '<cmd>lua require"dap".terminate()<CR>',{})
-
 require("dapui").setup({
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
   mappings = {
@@ -144,7 +128,6 @@ require("dapui").setup({
   }
 })
 
-vim.api.nvim_set_keymap('n', '<leader>du', '<cmd>lua require"dapui".toggle()<CR>',{})
 vim.fn.sign_define('DapBreakpoint', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl= 'DapBreakpoint' })

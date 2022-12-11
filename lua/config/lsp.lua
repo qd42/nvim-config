@@ -46,17 +46,29 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-  local nvim_lsp = require('lspconfig')
+  local lspconfig = require('lspconfig')
 local servers = { 'clangd' , 'sumneko_lua', 'glslls' }
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp]        .setup {
+    lspconfig[lsp]        .setup {
     capabilities = capabilities,
     on_attach = on_attach
     }
 end
+
+-- vim global is present in all nvim configs, this removes the warning
+-- (technically it should only be in nvim configs, but that sounds tricky to enforce)
+lspconfig.sumneko_lua.setup{
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+}
 
 require('lspkind').init({
     -- DEPRECATED (use mode instead): enables text annotations
@@ -129,4 +141,3 @@ cmp.setup {
 
 local lspsaga = require('lspsaga')
 lspsaga.init_lsp_saga()
--- 
