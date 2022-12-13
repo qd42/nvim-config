@@ -72,6 +72,9 @@ require('packer').startup(function(use)
             require("toggleterm").setup()
     end
     }
+    use {
+        "ray-x/lsp_signature.nvim",
+    }
 end)
 
 require('feline').setup()
