@@ -30,7 +30,7 @@ require('nord').set()
 --nord15_gui = "#B48EAD", -- nord15 in palette
 --none = "NONE",
 -- replace active background and update non-active to standare Nord background color
-vim.api.nvim_command("highlight NormalNC guibg=#2E3440")
+vim.api.nvim_command("highlight NormalNC guibg=black")
 vim.api.nvim_command("highlight Normal guibg=black")
 
 -- override the background for termanal/packer/etc

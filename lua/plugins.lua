@@ -20,7 +20,10 @@ require('packer').startup(function(use)
     use 'f3fora/cmp-spell'
     use {'L3MON4D3/LuaSnip', tag = "v1.1.*"}
     use 'mfussenegger/nvim-dap'
-    use 'glepnir/lspsaga.nvim'
+    use {
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+   }
     use 'onsails/lspkind-nvim'
 
     use 'mhinz/vim-startify'
@@ -75,6 +78,7 @@ require('packer').startup(function(use)
     use {
         "ray-x/lsp_signature.nvim",
     }
+    use 'sunjon/shade.nvim'
 end)
 
 require('feline').setup()
@@ -85,12 +89,21 @@ require('config.telescope')
 require('config.lsp')
 require('config.dap')
 require('config.cmp')
-require('config.colorscheme')
 require('config.devicons')
 require('config.gitsigns')
+require('config.colorscheme')
 
 vim.fn.sign_define('DiagnosticSignError', { text=' ', texthl='DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text=' ', texthl='DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignHint', { text=' ', texthl='DiagnosticSignHint' })
 vim.fn.sign_define('DiagnosticSignInfo', { text=' ', texthl='DiagnosticSignInfo' })
 
+require'shade'.setup({
+  overlay_opacity = 66,
+  opacity_step = 1,
+  keys = {
+    brightness_up    = '<C-Up>',
+    brightness_down  = '<C-Down>',
+    toggle           = '<Leader>s',
+  }
+})

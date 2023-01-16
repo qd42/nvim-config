@@ -70,6 +70,40 @@ lspconfig.sumneko_lua.setup{
     }
 }
 
+require('lspsaga').setup({
+ui = {
+    -- currently only round theme
+    theme = 'round',
+    -- border type can be single,double,rounded,solid,shadow.
+    border = 'single',
+    winblend = 0,
+    expand = '',
+    collapse = '',
+    preview = ' ',
+    code_action = '💡',
+    diagnostic = '🐞',
+    incoming = ' ',
+    outgoing = ' ',
+    colors = {
+      --float window normal bakcground color
+      normal_bg = '#1d1536',
+      --title background color
+      title_bg = '#afd700',
+      red = '#e95678',
+      magenta = '#b33076',
+      orange = '#FF8700',
+      yellow = '#f7bb3b',
+      green = '#afd700',
+      cyan = '#36d0e0',
+      blue = '#61afef',
+      purple = '#CBA6F7',
+      white = '#d1d4cf',
+      black = '#1c1c19',
+    },
+    kind = {},
+  },
+})
+
 require('lspkind').init({
     -- DEPRECATED (use mode instead): enables text annotations
     --
@@ -139,8 +173,8 @@ cmp.setup {
 }
 -- Error = "", Warning = "", Hint = "", Information = ""
 
-local lspsaga = require('lspsaga')
-lspsaga.init_lsp_saga()
+-- local lspsaga = require('lspsaga')
+-- lspsaga.init_lsp_saga()
 
 local cfg = {
   debug = false, -- set to true to enable debug logging
@@ -148,7 +182,7 @@ local cfg = {
   -- default is  ~/.cache/nvim/lsp_signature.log
   verbose = false, -- show debug line number
 
-  bind = true, -- This is mandatory, otherwise border config won't get registered.
+  bind = false, -- This is mandatory, otherwise border config won't get registered.
                -- If you want to hook lspsaga or other signature handler, pls set to false
   doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
                  -- set to 0 if you DO NOT want any API comments be shown
