@@ -1,6 +1,7 @@
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'shaunsingh/nord.nvim'
   use'kyazdani42/nvim-web-devicons'
 
   -- Simple plugins can be specified as strings
@@ -39,7 +40,6 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
     use 'jbyuki/one-small-step-for-vimkind'
     use 'Pocco81/DAPInstall.nvim'
-    use 'shaunsingh/nord.nvim'
 
     use 'cpea2506/one_monokai.nvim'
     use 'feline-nvim/feline.nvim'
@@ -54,7 +54,6 @@ require('packer').startup(function(use)
         requires = {
           'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
-        config = function() require'nvim-tree'.setup {} end
     }
     use {
         'numToStr/Comment.nvim',
@@ -81,6 +80,9 @@ require('packer').startup(function(use)
     use 'sunjon/shade.nvim'
 end)
 
+require('config.colorscheme')
+require('nvim-tree').setup {}
+
 require('feline').setup()
 require('Comment').setup()
 require('leap').add_default_mappings()
@@ -91,7 +93,6 @@ require('config.dap')
 require('config.cmp')
 require('config.devicons')
 require('config.gitsigns')
-require('config.colorscheme')
 
 vim.fn.sign_define('DiagnosticSignError', { text=' ', texthl='DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text=' ', texthl='DiagnosticSignWarn' })
