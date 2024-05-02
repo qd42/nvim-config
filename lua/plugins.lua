@@ -1,6 +1,17 @@
+
+-- Get platform dependant build script
+local function tabnine_build_path()
+  if vim.loop.os_uname().sysname == "Windows_NT" then
+    return "pwsh.exe -file .\\dl_binaries.ps1"
+  else
+    return "./dl_binaries.sh"
+  end
+end
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'shaunsingh/nord.nvim'
   use'kyazdani42/nvim-web-devicons'
 
   -- Simple plugins can be specified as strings
@@ -20,7 +31,10 @@ require('packer').startup(function(use)
     use 'f3fora/cmp-spell'
     use {'L3MON4D3/LuaSnip', tag = "v1.1.*"}
     use 'mfussenegger/nvim-dap'
-    use 'glepnir/lspsaga.nvim'
+    use {
+        'glepnir/lspsaga.nvim',
+        branch = 'main',
+    }
     use 'onsails/lspkind-nvim'
 
     use 'mhinz/vim-startify'
@@ -36,7 +50,6 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
     use 'jbyuki/one-small-step-for-vimkind'
     use 'Pocco81/DAPInstall.nvim'
-    use 'shaunsingh/nord.nvim'
 
     use 'cpea2506/one_monokai.nvim'
     use 'feline-nvim/feline.nvim'
@@ -75,7 +88,14 @@ require('packer').startup(function(use)
     use {
         "ray-x/lsp_signature.nvim",
     }
-end)
+    use 'sunjon/shade.nvim'
+    use 'rhysd/vim-clang-format'
+    -- use { 'cadota/tabnine-nvim', run = tabnine_build_path() }
+    use 'nvim-neotest/nvim-nio'
+ end)
+
+ require('config.colorscheme')
+ require('nvim-tree').setup {}
 
 require('feline').setup()
 require('Comment').setup()
@@ -85,12 +105,30 @@ require('config.telescope')
 require('config.lsp')
 require('config.dap')
 require('config.cmp')
-require('config.colorscheme')
 require('config.devicons')
-require('config.gitsigns')
 
 vim.fn.sign_define('DiagnosticSignError', { text=' ', texthl='DiagnosticSignError' })
 vim.fn.sign_define('DiagnosticSignWarn', { text=' ', texthl='DiagnosticSignWarn' })
 vim.fn.sign_define('DiagnosticSignHint', { text=' ', texthl='DiagnosticSignHint' })
 vim.fn.sign_define('DiagnosticSignInfo', { text=' ', texthl='DiagnosticSignInfo' })
 
+require'shade'.setup({
+    overlay_opacity = 66,
+    opacity_step = 1,
+    keys = {
+        brightness_up = '<C-Up>',
+        brightness_down = '<C-Down>',
+        toggle = '<Leader>s',
+    }
+    })
+
+
+--[[ require('tabnine').setup({
+  disable_auto_comment=true,
+  accept_keymap="<Tab>",
+  dismiss_keymap = "<C-]>",
+  debounce_ms = 800,
+  suggestion_color = {gui = "#808080", cterm = 244},
+  exclude_filetypes = {"TelescopePrompt", "NvimTree"},
+  log_file_path = nil, -- absolute path to Tabnine log file
+}) ]]

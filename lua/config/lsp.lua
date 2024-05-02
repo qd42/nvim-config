@@ -47,7 +47,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
   local lspconfig = require('lspconfig')
-local servers = { 'clangd' , 'sumneko_lua', 'glslls' }
+local servers = { 'clangd' , 'lua_ls', 'glslls' }
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -60,16 +60,16 @@ end
 
 -- vim global is present in all nvim configs, this removes the warning
 -- (technically it should only be in nvim configs, but that sounds tricky to enforce)
-lspconfig.sumneko_lua.setup{
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-}
-
+-- lspconfig.lua.setup{
+--    settings = {
+--        Lua = {
+--            diagnostics = {
+--                globals = { 'vim' }
+--            }
+--        }
+--    }
+-- }
+--
 require('lspkind').init({
     -- DEPRECATED (use mode instead): enables text annotations
     --
@@ -139,8 +139,8 @@ cmp.setup {
 }
 -- Error = "", Warning = "", Hint = "", Information = ""
 
-local lspsaga = require('lspsaga')
-lspsaga.init_lsp_saga()
+-- local lspsaga = require('lspsaga')
+-- lspsaga.init_lsp_saga()
 
 local cfg = {
   debug = false, -- set to true to enable debug logging
@@ -202,4 +202,5 @@ require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use t
 -- You can also do this inside lsp on_attach
 -- note: on_attach deprecated
 require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
+
 

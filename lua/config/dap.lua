@@ -1,3 +1,7 @@
+local default_program_linux = vim.fn.getcwd() .. '/'
+local default_program_win = vim.fn.getcwd() .. '\\'
+local default_args = ''
+
 local dap = require('dap')
 dap.adapters.cppdbg = {
       id = 'cppdbg',
@@ -21,7 +25,8 @@ dap.configurations.cpp = {
     type = "cppdbg",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      default_program_linux = vim.fn.input('Path to executable: ', default_program_linux, 'file')
+      return default_program_linux
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
@@ -31,12 +36,24 @@ dap.configurations.cpp = {
     type = "cppdbgwin",
     request = "launch",
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file')
+      default_program_win = vim.fn.input('Path to executable: ', default_program_win, 'file')
+      return default_program_win
     end,
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
   },
   {
+    name = "Launch file (gcc Win)",
+    type = "cppdbgwin",
+    request = "launch",
+    program = function()
+      default_program_win = vim.fn.input('Path to executable: ', default_program_win, 'file')
+      return default_program_win
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = true,
+  },
+   {
     name = 'Attach to gdbserver :1234',
     type = 'cppdbg',
     request = 'launch',
@@ -45,7 +62,8 @@ dap.configurations.cpp = {
     miDebuggerPath = '/usr/bin/gdb',
     cwd = '${workspaceFolder}',
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      default_program_linux = vim.fn.input('Path to executable: ', default_program_linux, 'file')
+      return default_program_linux
     end,
   },
 }

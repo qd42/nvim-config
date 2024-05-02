@@ -38,6 +38,7 @@ vim.api.nvim_set_keymap('n','<leader>tI','<cmd>Telescope lsp_incoming_calls<cr>'
 vim.api.nvim_set_keymap('n','<leader>tO','<cmd>Telescope lsp_outgoing_calls<cr>',silent_noremap)
 vim.api.nvim_set_keymap('n','<leader>tD','<cmd>Telescope diagnostics<cr>',silent_noremap)
 vim.api.nvim_set_keymap('n','<leader>tT','<cmd>Telescope lsp_type_definitions<cr>',silent_noremap)
+vim.api.nvim_set_keymap('n','<leader>ta','<cmd>Telescope resume<cr>',silent_noremap)
 
 vim.api.nvim_set_keymap('n', '<leader>cc','<cmd>make<cr>',silent_noremap)
 vim.api.nvim_set_keymap('n', '<leader>cj','<cmd>cnext<cr>',silent_noremap)
@@ -85,3 +86,19 @@ vim.api.nvim_set_keymap('i', '<C-E>', "luasnip#choice_active() ? '<Plug>luasnip-
 vim.api.nvim_set_keymap('s', '<C-E>', "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", silent_noremap_expr)
 
 
+vim.api.nvim_set_keymap('n', '<leader>sf', '<cmd>Lspsaga lsp_finder<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sa', '<cmd>Lspsaga code_action<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sr', '<cmd>Lspsaga rename<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sp', '<cmd>Lspsaga peek_definition<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sd', '<cmd>Lspsaga goto_definition<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sl', '<cmd>Lspsaga show_line_diagnostics<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sc', '<cmd>Lspsaga show_cursor_diagnostics<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sb', '<cmd>Lspsaga show_buf_diagnostics<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sj', '<cmd>Lspsaga diagnostic_jump_next<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sk', '<cmd>Lspsaga diagnostic_jump_prev<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>so', '<cmd>Lspsaga outline<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sI', '<cmd>Lspsaga incoming_calls<CR>', silent_noremap_expr)
+vim.api.nvim_set_keymap('n', '<leader>sO', '<cmd>Lspsaga outgoing_calls<CR>', silent_noremap_expr)
+
+vim.api.nvim_set_keymap('n', '<leader>vm', '<cmd>MarkdownPreview<CR>', silent_noremap)
+vim.api.nvim_set_keymap('n', '<leader>vf', "<cmd>ClangFormat<CR>", silent_noremap)
