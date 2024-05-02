@@ -64,7 +64,6 @@ require('packer').startup(function(use)
         requires = {
           'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
-        config = function() require'nvim-tree'.setup {} end
     }
     use {
         'numToStr/Comment.nvim',
@@ -94,8 +93,11 @@ require('packer').startup(function(use)
     use 'nvim-neotest/nvim-nio'
  end)
 
- require('config.colorscheme')
- require('nvim-tree').setup {}
+require('config.colorscheme')
+require('nvim-tree').setup {}
+
+require('config.colorscheme')
+require('nvim-tree').setup {}
 
 require('feline').setup()
 require('Comment').setup()
