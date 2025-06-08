@@ -1,33 +1,29 @@
+-- Bootstrap lazy.nvim plugin manager
+-- This is the main entry point for the Neovim configuration
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  -- If lazy.nvim is not installed, clone it from GitHub
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none", -- Shallow clone for faster download
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- Use stable branch
+    lazypath,
+  })
+end
+-- Add lazy.nvim to the runtime path so it can be required
+vim.opt.rtp:prepend(lazypath)
 
-vim.opt.compatible = false -- disable compatibility to old-time vi
-vim.opt.showmatch = true      -- show matching
-vim.opt.ignorecase = true     -- case insensitive
-vim.opt.mouse = "a"          -- middle-click paste with, a - enable mounse
-vim.opt.hlsearch = true       -- highlight search
-vim.opt.incsearch = true      -- incremental search
-vim.opt.tabstop = 4           -- number of columns occupied by
-vim.opt.softtabstop = 4       -- see multiple spaces as tabstop
-vim.opt.expandtab = true      -- converts tabs to white space
-vim.opt.shiftwidth = 4        -- width for autoindents
-vim.opt.autoindent = true     -- indent a new line the same amo
-vim.opt.number = true         -- add line numbers
-vim.opt.relativenumber = true
-vim.opt.wildmode = "longest,list" -- get bash-like tab completions st"
-vim.opt.clipboard = "unnamedplus" -- using system clipboard (via "+)
-vim.opt.filetype.plugin = true
-vim.opt.cursorline = true -- highlight current cursorline, not working from LUA????
-vim.opt.ttyfast = true -- Speed up scrolling in Vim
-vim.opt.timeout = false -- no timeout on leader keys
-vim.opt.ttimeout = true -- terminal timeout
-vim.opt.swapfile = false
-vim.o.termguicolors = true
+-- Load core configuration modules
+require("core")
 
--- not sure how to do these directly from LUA:
-vim.cmd('filetype plugin indent on') -- allow auto-indenting depending on file type
-vim.cmd('syntax on') -- syntax highlighting
-vim.cmd('filetype plugin on')
-vim.cmd('set backupdir=~/.cache/vim')
-vim.cmd('set cursorline')
+-- Setup plugins using lazy.nvim
+require("plugins")
 
-require('plugins')
-require('keys')
+-- Load local configuration file if it exists
+-- This allows for machine-specific overrides without affecting the main config
+local local_config = vim.fn.stdpath("config") .. "/local.lua"
+if vim.fn.filereadable(local_config) == 1 then
+  dofile(local_config)
+end
