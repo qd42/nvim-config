@@ -16,7 +16,7 @@ return {
       { "<leader>ds", function() require("dap").step_over() end, desc = "Step over" },
       { "<leader>di", function() require("dap").step_into() end, desc = "Step into" },
       { "<leader>do", function() require("dap").step_out() end, desc = "Step out" },
-      
+
       -- Breakpoint management
       { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle breakpoint" },
       { "<leader>dB", function()
@@ -25,14 +25,14 @@ return {
       { "<leader>dm", function()
         require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
       end, desc = "Set log point" },
-      
+
       -- Debug session management
       { "<leader>dr", function() require("dap").repl.open() end, desc = "Open debug REPL" },
       { "<leader>dl", function() require("dap").run_last() end, desc = "Run last debug session" },
       { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate debug session" },
       { "<leader>du", function() require("dapui").toggle() end, desc = "Toggle debug UI" },
       { "<leader>dg", function() require("dap").run_to_cursor() end, desc = "Run to cursor" },
-      
+
       -- Variable inspection
       { "<leader>dv", function() require("dap.ui.variables").scopes() end, desc = "Show variable scopes" },
       { "<leader>dh", function() require("dap.ui.variables").hover() end, desc = "Hover variables" },
@@ -45,7 +45,7 @@ return {
     },
     config = function()
       local dap = require("dap")
-      
+
       -- C/C++ Debug Adapter Configuration
       dap.adapters.cppdbg = {
         id = "cppdbg",
@@ -55,7 +55,7 @@ return {
           detached = false -- Keep attached to Neovim process
         }
       }
-      
+
       -- Windows-specific C/C++ adapter
       if vim.fn.has("win32") == 1 then
         dap.adapters.cppdbgwin = {
@@ -67,12 +67,12 @@ return {
           }
         }
       end
-      
+
       -- Helper function to get executable path from user
       local function get_executable_path()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
       end
-      
+
       -- C/C++ Debug Configurations
       dap.configurations.cpp = {
         {
@@ -94,7 +94,7 @@ return {
           program = get_executable_path,
         },
       }
-      
+
       -- Add Windows-specific configuration if on Windows
       if vim.fn.has("win32") == 1 then
         table.insert(dap.configurations.cpp, {
@@ -108,45 +108,45 @@ return {
           stopOnEntry = true,
         })
       end
-      
+
       -- Use same configurations for C and Rust
       dap.configurations.c = dap.configurations.cpp
       dap.configurations.rust = dap.configurations.cpp
-      
+
       -- Define signs for breakpoints and debug status
       local signs = {
-        DapBreakpoint = { 
-          text = "", 
-          texthl = "DapBreakpoint", 
-          linehl = "DapBreakpoint", 
-          numhl = "DapBreakpoint" 
+        DapBreakpoint = {
+          text = "",
+          texthl = "DapBreakpoint",
+          linehl = "DapBreakpoint",
+          numhl = "DapBreakpoint"
         },
-        DapBreakpointCondition = { 
-          text = "ﳁ", 
-          texthl = "DapBreakpoint", 
-          linehl = "DapBreakpoint", 
-          numhl = "DapBreakpoint" 
+        DapBreakpointCondition = {
+          text = "ﳁ",
+          texthl = "DapBreakpoint",
+          linehl = "DapBreakpoint",
+          numhl = "DapBreakpoint"
         },
-        DapBreakpointRejected = { 
-          text = "", 
-          texthl = "DapBreakpoint", 
-          linehl = "DapBreakpoint", 
-          numhl = "DapBreakpoint" 
+        DapBreakpointRejected = {
+          text = "",
+          texthl = "DapBreakpoint",
+          linehl = "DapBreakpoint",
+          numhl = "DapBreakpoint"
         },
-        DapLogPoint = { 
-          text = "", 
-          texthl = "DapLogPoint", 
-          linehl = "DapLogPoint", 
-          numhl = "DapLogPoint" 
+        DapLogPoint = {
+          text = "",
+          texthl = "DapLogPoint",
+          linehl = "DapLogPoint",
+          numhl = "DapLogPoint"
         },
-        DapStopped = { 
-          text = "", 
-          texthl = "DapStopped", 
-          linehl = "DapStopped", 
-          numhl = "DapStopped" 
+        DapStopped = {
+          text = "",
+          texthl = "DapStopped",
+          linehl = "DapStopped",
+          numhl = "DapStopped"
         },
       }
-      
+
       -- Apply the signs
       for name, sign in pairs(signs) do
         vim.fn.sign_define(name, sign)
@@ -162,12 +162,12 @@ return {
     config = function()
       require("dapui").setup({
         -- Icons for the debug UI
-        icons = { 
+        icons = {
           expanded = "▾",      -- Expanded tree node
           collapsed = "▸",     -- Collapsed tree node
           current_frame = "▸"  -- Current stack frame
         },
-        
+
         -- Key mappings within debug UI
         mappings = {
           expand = { "<CR>", "<2-LeftMouse>" }, -- Expand/collapse
@@ -177,10 +177,10 @@ return {
           repl = "r",          -- Open in REPL
           toggle = "t",        -- Toggle item
         },
-        
+
         -- Expand long lines (requires Neovim 0.7+)
         expand_lines = vim.fn.has("nvim-0.7") == 1,
-        
+
         -- Layout configuration - defines windows and their positions
         layouts = {
           {
@@ -204,7 +204,7 @@ return {
             position = "bottom", -- Position at bottom
           },
         },
-        
+
         -- Debug controls (requires Neovim nightly or 0.8+)
         controls = {
           enabled = true,
@@ -220,7 +220,7 @@ return {
             terminate = "□", -- Terminate session
           },
         },
-        
+
         -- Floating window configuration
         floating = {
           max_height = nil,     -- Use available height
@@ -230,10 +230,10 @@ return {
             close = { "q", "<Esc>" }, -- Keys to close floating windows
           },
         },
-        
+
         -- General window settings
         windows = { indent = 1 }, -- Indentation level
-        
+
         -- Rendering options
         render = {
           max_type_length = nil,   -- No limit on type name length
@@ -272,16 +272,16 @@ return {
     dependencies = { "mfussenegger/nvim-dap" },
     config = function()
       local dap = require("dap")
-      
+
       -- Lua debug adapter configuration
       dap.adapters.nlua = function(callback, config)
-        callback({ 
-          type = "server", 
-          host = config.host or "127.0.0.1", 
-          port = config.port or 8086 
+        callback({
+          type = "server",
+          host = config.host or "127.0.0.1",
+          port = config.port or 8086
         })
       end
-      
+
       -- Lua debug configuration
       dap.configurations.lua = {
         {

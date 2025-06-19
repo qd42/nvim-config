@@ -15,6 +15,7 @@ end
 -- Add lazy.nvim to the runtime path so it can be required
 vim.opt.rtp:prepend(lazypath)
 
+require("utils.colors").setup()
 -- Load core configuration modules
 require("core")
 

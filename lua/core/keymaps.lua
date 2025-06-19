@@ -45,3 +45,6 @@ map("n", "<leader>vt", "<cmd>ToggleTerm<cr>", "Toggle terminal")
 map("n", "<M-t>", "<cmd>NvimTreeToggle<cr>", "Toggle file tree")
 map("n", "<leader>vm", "<cmd>MarkdownPreview<cr>", "Markdown preview")
 map("n", "<leader>vf", "<cmd>ClangFormat<cr>", "Format code")
+
+map("n", "<leader>lv", '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>')
+

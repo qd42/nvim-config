@@ -2,28 +2,6 @@
 -- This file contains plugins that enhance the visual appearance and user interface
 
 return {
-  -- Nord Color Scheme
-  -- A beautiful arctic-inspired color scheme
-  {
-    "shaunsingh/nord.nvim",
-    lazy = false,    -- Load immediately (colorschemes should load first)
-    priority = 1000, -- High priority to load before other plugins
-    config = function()
-      -- Configure Nord theme options
-      vim.g.nord_contrast = true             -- Enable contrast
-      vim.g.nord_borders = false             -- Disable borders
-      vim.g.nord_disable_background = false  -- Keep background
-      vim.g.nord_italic = true               -- Enable italic text
-      
-      -- Apply the Nord color scheme
-      require("nord").set()
-      
-      -- Custom background overrides for active/inactive windows
-      vim.api.nvim_command("highlight NormalNC guibg=black") -- Inactive windows
-      vim.api.nvim_command("highlight Normal guibg=black")   -- Active window
-    end,
-  },
-
   -- Feline Status Line
   -- A minimal, fast, and customizable statusline
   {
@@ -100,7 +78,7 @@ return {
     "nvimtools/hydra.nvim",
     config = function()
       local Hydra = require("hydra")
-      
+
       -- Window Management Hydra
       -- Provides a modal interface for window operations
       Hydra({
@@ -113,17 +91,17 @@ return {
           { "j", "<C-w>j", { desc = "Move down" } },
           { "k", "<C-w>k", { desc = "Move up" } },
           { "l", "<C-w>l", { desc = "Move right" } },
-          
+
           -- Window resizing
           { "H", "<C-w><", { desc = "Resize left" } },
           { "L", "<C-w>>", { desc = "Resize right" } },
           { "K", "<C-w>-", { desc = "Resize up" } },
           { "J", "<C-w>+", { desc = "Resize down" } },
-          
+
           -- Other window operations
           { "e", "<C-w>=", { desc = "Equalize windows" } },
           { "Q", ":q<cr>", { desc = "Quit window", exit = true } },
-          
+
           -- Exit keys
           { "q", nil, { exit = true, nowait = true } },
           { "<Esc>", nil, { exit = true, nowait = true } },

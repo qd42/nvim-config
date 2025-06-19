@@ -20,15 +20,15 @@ return {
       -- Windows-specific configuration to handle file locking issues
       if vim.fn.has("win32") == 1 then
         local install = require("nvim-treesitter.install")
-        
+
         -- Disable git-based installation to avoid file locks
         install.prefer_git = false
-        
+
         -- Configure curl with safer options for Windows
         install.command_extra_args = {
           curl = { "--silent", "--show-error", "--location", "--connect-timeout", "60", "--max-time", "300" },
         }
-        
+
         -- Detect available compilers on Windows
         local available_compilers = {}
         for _, compiler in ipairs({ "gcc", "clang", "cl", "zig" }) do
@@ -36,14 +36,14 @@ return {
             table.insert(available_compilers, compiler)
           end
         end
-        
+
         if #available_compilers > 0 then
           install.compilers = available_compilers
           vim.notify("TreeSitter will use compiler: " .. available_compilers[1], vim.log.levels.INFO)
         else
           vim.notify("No suitable compiler found. TreeSitter parsers may not compile.", vim.log.levels.WARN)
         end
-        
+
         -- Override directory removal function for Windows compatibility
         local original_rmdir = install.rmdir
         install.rmdir = function(path)
@@ -59,7 +59,7 @@ return {
           end
         end
       end
-      
+
       -- Main TreeSitter configuration
       require("nvim-treesitter.configs").setup({
         -- Language parsers to install automatically
@@ -67,25 +67,25 @@ return {
           "c", "cpp", "lua", "python", "rust", "javascript", "typescript",
           "html", "css", "json", "yaml", "markdown", "bash", "vim", "vimdoc", "query"
         },
-        
+
         -- Platform-specific installation settings
         auto_install = vim.fn.has("win32") == 0,  -- Disable auto-install on Windows
         sync_install = vim.fn.has("win32") == 1,  -- Use sync install on Windows
-        
+
         -- Syntax highlighting configuration
         highlight = {
           enable = true,
           -- Use additional vim regex highlighting on Windows as fallback
           additional_vim_regex_highlighting = vim.fn.has("win32") == 1,
         },
-        
+
         -- Smart indentation
         indent = {
           enable = true,
           -- Disable problematic languages on Windows
           disable = vim.fn.has("win32") == 1 and { "python", "yaml", "html" } or {},
         },
-        
+
         -- Incremental selection with TreeSitter
         incremental_selection = {
           enable = true,
@@ -97,7 +97,7 @@ return {
           },
         },
       })
-      
+
       -- Windows-specific safe installation commands
       if vim.fn.has("win32") == 1 then
         -- Command to safely install individual parsers
@@ -107,9 +107,9 @@ return {
             vim.notify("Usage: :TSInstallSafe <parser_name>", vim.log.levels.ERROR)
             return
           end
-          
+
           vim.notify("Installing " .. parser .. " parser...", vim.log.levels.INFO)
-          
+
           -- Clean up any existing parser directory first
           local parser_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/parser-info/" .. parser
           if vim.fn.isdirectory(parser_dir) == 1 then
@@ -119,12 +119,12 @@ return {
             )
             os.execute(cleanup_cmd)
           end
-          
+
           -- Attempt to install the parser
           local success, err = pcall(function()
             vim.cmd("TSInstall! " .. parser)
           end)
-          
+
           if success then
             vim.notify("Successfully installed " .. parser .. " parser!", vim.log.levels.INFO)
           else
@@ -136,19 +136,19 @@ return {
             return { "lua", "vim", "c", "cpp", "python", "javascript", "typescript", "json", "markdown", "html", "css" }
           end,
         })
-        
+
         -- Command to install essential parsers with delays
         vim.api.nvim_create_user_command("TSInstallEssential", function()
           local parsers = { "lua", "vim", "vimdoc", "query" }
           vim.notify("Installing essential parsers: " .. table.concat(parsers, ", "), vim.log.levels.INFO)
-          
+
           for i, parser in ipairs(parsers) do
             vim.defer_fn(function()
               vim.cmd("TSInstallSafe " .. parser)
             end, i * 3000) -- 3 second delay between installations
           end
         end, {})
-        
+
         -- Provide usage information for Windows users
         vim.defer_fn(function()
           vim.notify("TreeSitter enabled on Windows. Use :TSInstallEssential or :TSInstallSafe <parser> to install parsers.", vim.log.levels.INFO)
@@ -220,22 +220,22 @@ return {
       { "<leader>ts", "<cmd>Telescope grep_string<cr>", desc = "Grep string" },
       { "<leader>tb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>to", "<cmd>Telescope oldfiles<cr>", desc = "Old files" },
-      
+
       -- Command and search history
       { "<leader>tc", "<cmd>Telescope command_history<cr>", desc = "Command history" },
       { "<leader>tS", "<cmd>Telescope search_history<cr>", desc = "Search history" },
-      
+
       -- Vim internals
       { "<leader>tq", "<cmd>Telescope quickfix<cr>", desc = "Quickfix" },
       { "<leader>tr", "<cmd>Telescope registers<cr>", desc = "Registers" },
-      
+
       -- LSP integration
       { "<leader>tR", "<cmd>Telescope lsp_references<cr>", desc = "LSP references" },
       { "<leader>tI", "<cmd>Telescope lsp_incoming_calls<cr>", desc = "Incoming calls" },
       { "<leader>tO", "<cmd>Telescope lsp_outgoing_calls<cr>", desc = "Outgoing calls" },
       { "<leader>tD", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
       { "<leader>tT", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Type definitions" },
-      
+
       -- Utility
       { "<leader>ta", "<cmd>Telescope resume<cr>", desc = "Resume last search" },
     },
@@ -261,22 +261,22 @@ return {
     keys = {
       -- Main trouble interface
       { "<leader>rt", "<cmd>Trouble<cr>", desc = "Trouble" },
-      
+
       -- Diagnostics
       { "<leader>rd", "<cmd>Trouble diagnostics toggle<cr>", desc = "Document diagnostics" },
       { "<leader>rD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer diagnostics" },
-      
+
       -- LSP integration
       { "<leader>rR", "<cmd>Trouble lsp_references toggle<cr>", desc = "LSP references" },
       { "<leader>rI", "<cmd>Trouble lsp_incoming_calls toggle<cr>", desc = "Incoming calls" },
       { "<leader>rO", "<cmd>Trouble lsp_outgoing_calls toggle<cr>", desc = "Outgoing calls" },
       { "<leader>rs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Document symbols" },
       { "<leader>rS", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP definitions/references" },
-      
+
       -- List management
       { "<leader>rq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix list" },
       { "<leader>rl", "<cmd>Trouble loclist toggle<cr>", desc = "Location list" },
-      
+
       -- Navigation
       { "<leader>rj", function()
         if require("trouble").is_open() then
@@ -288,7 +288,7 @@ return {
           end
         end
       end, desc = "Next trouble/quickfix item" },
-      
+
       { "<leader>rk", function()
         if require("trouble").is_open() then
           require("trouble").prev({skip_groups = true, jump = true})
@@ -307,7 +307,7 @@ return {
         height = 10,         -- Height of the trouble list when position is top or bottom
         width = 50,          -- Width of the list when position is left or right
         padding = true,      -- Add an extra new line on top of the list
-        
+
         -- Icon configuration - must be a table, not boolean
         icons = {
           indent = {
@@ -349,13 +349,13 @@ return {
             Variable      = "󰀫 ",
           },
         },
-        
+
         -- Appearance settings
         fold_open = "",      -- Icon used for open folds
         fold_closed = "",    -- Icon used for closed folds
         group = true,        -- Group results by file
         cycle_results = true, -- Cycle item list when reaching beginning or end
-        
+
         -- Action keys
         keys = {
           ["?"] = "help",
@@ -407,7 +407,7 @@ return {
             desc = "Toggle Severity Filter",
           },
         },
-        
+
         -- Mode configuration
         modes = {
           -- Sources of trouble
@@ -446,7 +446,7 @@ return {
       { "gcc", mode = "n", desc = "Comment toggle current line" },
       { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
       { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      
+
       -- Block commenting
       { "gbc", mode = "n", desc = "Comment toggle current block" },
       { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
@@ -524,47 +524,47 @@ return {
         filetypes = {
           "*",        -- Enable for all file types by default
           -- File-specific configurations
-          css = { 
+          css = {
             rgb_fn = true,      -- Enable RGB() functions
             hsl_fn = true,      -- Enable HSL() functions
             css = true,         -- Enable CSS colors (names like 'red', 'blue')
             css_fn = true,      -- Enable CSS functions
           },
-          scss = { 
-            rgb_fn = true, 
-            hsl_fn = true, 
-            css = true, 
-            css_fn = true,
-          },
-          sass = { 
-            rgb_fn = true, 
-            hsl_fn = true, 
-            css = true, 
-            css_fn = true,
-          },
-          html = { 
-            rgb_fn = true, 
+          scss = {
+            rgb_fn = true,
+            hsl_fn = true,
             css = true,
             css_fn = true,
           },
-          javascript = { 
+          sass = {
+            rgb_fn = true,
+            hsl_fn = true,
+            css = true,
+            css_fn = true,
+          },
+          html = {
+            rgb_fn = true,
+            css = true,
+            css_fn = true,
+          },
+          javascript = {
             rgb_fn = true,      -- Enable RGB() function highlighting
           },
-          typescript = { 
+          typescript = {
             rgb_fn = true,
           },
-          vue = { 
-            rgb_fn = true, 
+          vue = {
+            rgb_fn = true,
             css = true,
             css_fn = true,
           },
-          svelte = { 
-            rgb_fn = true, 
+          svelte = {
+            rgb_fn = true,
             css = true,
             css_fn = true,
           },
         },
-        
+
         -- Default options for all file types
         default_options = {
           RGB = true,         -- #RGB hex codes (e.g., #F00)
@@ -575,18 +575,18 @@ return {
           hsl_fn = false,     -- HSL() functions (disabled by default)
           css = false,        -- CSS color names (disabled by default for most files)
           css_fn = false,     -- CSS functions (disabled by default for most files)
-          
+
           -- Display mode
           mode = "background", -- Options: 'foreground', 'background', 'virtualtext'
-          
+
           -- Virtual text options (when mode = "virtualtext")
           virtualtext = "■",   -- Character to show in virtual text
-          
+
           -- Parser options
           tailwind = false,    -- Disable Tailwind CSS colors by default
           sass = { enable = false, parsers = { "css" } }, -- Sass support
         },
-        
+
         -- Buffer-local options
         buftypes = {
           "*",              -- Enable for all buffer types
@@ -595,7 +595,7 @@ return {
           "!popup",         -- Don't enable for popup buffers
         },
       })
-      
+
       -- Auto-attach to new buffers
       vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
         group = vim.api.nvim_create_augroup("ColorizerAttach", { clear = true }),
@@ -612,11 +612,11 @@ return {
 
   -- Virtual Types
   -- Show type annotations for languages like C/C++/Rust
-  {
+  --[[ {
     "jubnzv/virtual-types.nvim",
     ft = { "c", "cpp", "rust" }, -- Load only for specific file types
     config = function()
       require("virtualtypes").setup() -- Use default configuration
     end,
-  },
+  }, ]]
 }
