@@ -6,7 +6,7 @@ local keymap = require("utils.keymap")
 local map = keymap.map
 
 -- Leader Key Configuration
-vim.g.mapleader = " "      -- Set space as the leader key
+vim.g.mapleader = " " -- Set space as the leader key
 vim.g.maplocalleader = " " -- Set space as the local leader key
 
 -- Disable default space behavior in normal mode
@@ -47,4 +47,3 @@ map("n", "<leader>vm", "<cmd>MarkdownPreview<cr>", "Markdown preview")
 map("n", "<leader>vf", "<cmd>ClangFormat<cr>", "Format code")
 
 map("n", "<leader>lv", '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>')
-
