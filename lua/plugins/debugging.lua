@@ -1,6 +1,10 @@
 -- Debugging configuration with DAP (Debug Adapter Protocol)
 -- This file sets up debugging capabilities for various languages
 
+local folder_seppartor = vim.fn.has("win32") == 1 and '\\' or '/'
+local default_program = vim.fn.getcwd() .. folder_seppartor
+local default_args = ''
+
 return {
     -- nvim-dap - Debug Adapter Protocol client
     -- Main debugging plugin that communicates with debug adapters
@@ -70,7 +74,8 @@ return {
 
             -- Helper function to get executable path from user
             local function get_executable_path()
-                return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                default_program = vim.fn.input("Path to executable: ", default_program, "file")
+                return default_program
             end
 
             -- C/C++ Debug Configurations
@@ -101,9 +106,7 @@ return {
                     name = "Launch file (Windows)",
                     type = "cppdbgwin",
                     request = "launch",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "\\", "file")
-                    end,
+                    program = get_executable_path,
                     cwd = "${workspaceFolder}",
                     stopOnEntry = true,
                 })
